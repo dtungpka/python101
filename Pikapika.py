@@ -25,7 +25,7 @@ X_temp = (X - X_av)**2
 X_temp = np.sum(X_temp,axis=0)
 SD = np.sqrt(X_temp/14)
 Z = (X - X_av)/SD
-#Xem ảnh 3, 3-1  (.T là chuyển vị ma trận - nãy mình thiếu cái này :V )
+#Xem ảnh 3, 3-1  (.T là chuyển vị ma trận )
 cov_m = np.cov(Mouse.T,bias=True)
 cov_d = np.cov(Dragon.T,bias=True)
 W = ((5-1)*cov_m + (9 -1)*cov_d)/(5+9-2)
