@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 #Lấy dữ liệu
-path = "D:\\2021-2022\\Python101\\pokemon.csv"
+path = "D:\\2021-2022\\[Finished]\\Python101\\pokemon.csv"
 pokedex = pd.read_csv(open(path,'r'))
 #Lấy tên pokemon
 names = pokedex['name']
@@ -25,7 +25,7 @@ X_temp = (X - X_av)**2
 X_temp = np.sum(X_temp,axis=0)
 SD = np.sqrt(X_temp/14)
 Z = (X - X_av)/SD
-#Xem ảnh 3, 3-1  (.T là chuyển vị ma trận )
+#Xem ảnh 3, 3-1  (.T là chuyển vị ma trận - nãy mình thiếu cái này :V )
 cov_m = np.cov(Mouse.T,bias=True)
 cov_d = np.cov(Dragon.T,bias=True)
 W = ((5-1)*cov_m + (9 -1)*cov_d)/(5+9-2)
@@ -51,12 +51,14 @@ Dg_av = np.sum(LD2,axis = 0) / 9
 #Mức phân loại đã tìm được
 LD_mid = (Mouse_av + Dg_av) / 2
 
-
+predict = (LD(W_,X) >= LD_mid)
+#Tính độ chính xác
+accuracy = np.sum(predict == classfication) / 14
+print("Accuracy: ",round(accuracy*100,2),"%")
 #Thử phân loại
 #Pikachu: Mouse Pokemon	Pikachu	1	1	1
 pikapika_stat = np.array([1,1,1]).reshape(3,1)
-LD_pika = np.sum(LD(W_,pikapika_stat))/3
-
+LD_pika = LD(W_,pikapika_stat.T)
 if LD_pika >= LD_mid:
     print("Pikachu là pokemon hệ rồng")
 else:
